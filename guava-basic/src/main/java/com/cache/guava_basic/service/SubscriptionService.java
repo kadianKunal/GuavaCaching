@@ -32,6 +32,7 @@ public class SubscriptionService {
     public void initCache() {
         guavaCache = CacheBuilder.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES)
+                .maximumSize(1000)  // Set the maximum number of entries
                 .build(new CacheLoader<>() {
                     @Override
                     public List<Subscription> load(@NonNull SubscriptionKey key) {
